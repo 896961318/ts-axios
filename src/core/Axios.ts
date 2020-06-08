@@ -20,10 +20,13 @@ interface PromiseChain<T> {
 }
 
 export default class Axios {
+  // 添加默认类型
+  defaults: AxiosRequestConfig
   interceptors: Interceptors
 
   // 创建实例过程中添加拦截器的request跟responese拦截器方法
-  constructor() {
+  constructor(initConfig: AxiosRequestConfig) {
+    this.defaults = initConfig
     this.interceptors = {
       request: new InterceptorManger<AxiosRequestConfig>(),
       responese: new InterceptorManger<AxiosResponse>()
